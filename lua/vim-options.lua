@@ -5,4 +5,6 @@ vim.cmd("set shiftwidth=2")
 vim.cmd("set relativenumber")
 vim.cmd("set title")
 vim.cmd("set titlestring=%f")
+vim.cmd("set ignorecase")
+vim.cmd("set smartcase")
 vim.g.mapleader = " "
