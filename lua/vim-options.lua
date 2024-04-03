@@ -14,3 +14,9 @@ vim.cmd("set spelllang=en_us,en_ca")
 vim.cmd("setlocal spelloptions=camel")
 vim.filetype.add({ extension = { templ = "templ" } })
 vim.g.mapleader = " "
+vim.api.nvim_create_autocmd("Filetype", {
+	pattern = "*",
+	callback = function()
+		vim.opt_local.formatoptions:remove({ "r", "o" })
+	end,
+})

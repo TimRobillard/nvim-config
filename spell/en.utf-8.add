@@ -25,3 +25,8 @@ SSOMetadata
 SSOMetadata
 SSOMetadata
 retsmls
+enqueued
+REDIS
+MONGO
+PUBSUB
+GOOGLE_PUBSUB_POSTFIX

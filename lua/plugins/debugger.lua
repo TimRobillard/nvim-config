@@ -1,29 +1,114 @@
-return {
-	"mfussenegger/nvim-dap",
-	dependencies = {
-		"rcarriga/nvim-dap-ui",
-		"leoluz/nvim-dap-go",
-	},
-	config = function()
-		local dap, dapui = require("dap"), require("dapui")
-
-		require("dap-go").setup()
-		require("dapui").setup()
-
-		dap.listeners.before.attach.dapui_config = function()
-			dapui.open()
-		end
-		dap.listeners.before.launch.dapui_config = function()
-			dapui.open()
-		end
-		dap.listeners.before.event_terminated.dapui_config = function()
-			dapui.close()
-		end
-		dap.listeners.before.event_exited.dapui_config = function()
-			dapui.close()
-		end
-
-		vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, {})
-		vim.keymap.set("n", "<Leader>dc", dap.continue, {})
-	end,
-}
+return {}
+-- local js_based_laguages = {
+-- 	"typescript",
+-- 	"javascript",
+-- 	"typescriptreact",
+-- 	"javascriptreact",
+-- }
+--
+-- return {
+-- 	"mfussenegger/nvim-dap",
+-- 	config = function()
+-- 		local dap, Config = require("dap"), require("lazyvim.config")
+-- 		vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
+--
+-- 		for name, sign in pairs(Config.icons.dap) do
+-- 			sign = type(sign) == "table" and sign or { sign }
+-- 			vim.fn.sign_define(
+-- 				"Dap" .. name,
+-- 				{ text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
+-- 			)
+-- 		end
+--
+-- 		for _, language in ipairs(js_based_laguages) do
+-- 			dap.configurations[language] = {
+-- 				{
+-- 					type = "pwa-node",
+-- 					request = "launch",
+-- 					name = "Launch file",
+-- 					program = "${file}",
+-- 					cwd = "${workspaceFolder}",
+-- 					sourceMaps = true,
+-- 				},
+-- 				{
+-- 					type = "pwa-node",
+-- 					request = "attach",
+-- 					name = "Attach",
+-- 					processId = requier("dap.utils").pick_process,
+-- 					cwd = "${workspaceFolder}",
+-- 					sourceMaps = true,
+-- 				},
+-- 				{
+-- 					type = "pwa-chrome",
+-- 					request = "launch",
+-- 					name = "Launch & Debug Chrome",
+-- 					url = function()
+-- 						local co = coroutine.running()
+-- 						return coroutine.create(function()
+-- 							vim.ui.input({
+-- 								prompt = "Enter URL: ",
+-- 								default = "http://localhost:3000",
+-- 							}, function(url)
+-- 								if url == nil or url == "" then
+-- 									return
+-- 								else
+-- 									coroutine.resume(co, url)
+-- 								end
+-- 							end)
+-- 						end)
+-- 					end,
+-- 					webRoot = "${workdspaceFolder}",
+-- 					skipFiles = { "<node_internals>/**/*.js" },
+-- 					protocol = "inspector",
+-- 					userDataDir = false,
+-- 					sourceMaps = true,
+-- 				},
+-- 				{
+-- 					name = "------- v launch.json config v -------",
+-- 					type = "",
+-- 					request = "launch",
+-- 				},
+-- 			}
+-- 		end
+-- 		vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, {})
+-- 		vim.keymap.set("n", "<Leader>dc", dap.continue, {})
+-- 	end,
+-- 	keys = {
+-- 		{
+-- 			"<leader>dO",
+-- 			function()
+-- 				require("dap").step_out()
+-- 			end,
+-- 			desc = "Step Out",
+-- 		},
+-- 		{
+-- 			"<leader>do",
+-- 			function()
+-- 				require("dap").step_over()
+-- 			end,
+-- 			desc = "Step Over",
+-- 		},
+-- 		{
+-- 			"<leader>da",
+-- 			function()
+-- 				if vim.fn.filereadable(".vscode/launch.json") then
+-- 					local dap_vscode = require("dap.ext.vscode")
+-- 					dap_vscode.load_launchjs(nil, {
+-- 						["pwa-node"] = js_based_laguages,
+-- 						["node"] = js_based_laguages,
+-- 						["chrome"] = js_based_laguages,
+-- 						["pwa-chrome"] = js_based_laguages,
+-- 					})
+-- 				end
+-- 				require("dap").continue()
+-- 			end,
+-- 			desc = "Run with Args",
+-- 		},
+-- 	},
+-- 	dependencies = {
+-- 		{
+-- 			"microsoft/vscode-js-debug",
+-- 			build = "npm install --legacy-peer-deps && npx gulp csDebugServerBundle && dist out",
+-- 		},
+-- 	},
+-- }
