@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "tsserver", "gopls", "html", "htmx", "templ", "tailwindcss", "yamlls" },
+        ensure_installed = { "eslint", "lua_ls", "pyright", "tsserver", "gopls", "html", "htmx", "templ", "tailwindcss", "yamlls" },
       })
     end,
   },
@@ -20,6 +20,9 @@ return {
       local lspconfig = require("lspconfig")
 
       lspconfig.lua_ls.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.pyright.setup({
         capabilities = capabilities,
       })
       lspconfig.tsserver.setup({
@@ -66,6 +69,7 @@ return {
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
       vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+      vim.keymap.set("n", "<leader>gg", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
       vim.keymap.set("n", "<leader>cc", vim.diagnostic.open_float, {})
     end,
