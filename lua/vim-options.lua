@@ -14,12 +14,15 @@ vim.opt.smartindent = true
 vim.opt.termguicolors = true
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
+
+vim.cmd("setlocal spelloptions=camel")
+
 vim.filetype.add({ extension = { templ = "templ" } })
 vim.g.mapleader = " "
-vim.cmd("setlocal spelloptions=camel")
+
 vim.api.nvim_create_autocmd("Filetype", {
-    pattern = "*",
-    callback = function()
-        vim.opt_local.formatoptions:remove({ "r", "o" })
-    end,
+	pattern = "*",
+	callback = function()
+		vim.opt_local.formatoptions:remove({ "r", "o" })
+	end,
 })
