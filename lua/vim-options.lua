@@ -1,24 +1,25 @@
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
-vim.cmd("set relativenumber")
-vim.cmd("set number")
-vim.cmd("set title")
-vim.cmd("set titlestring=%f")
-vim.cmd("set ignorecase")
-vim.cmd("set smartcase")
-vim.cmd("set autoindent")
-vim.cmd("set smartindent")
-vim.cmd("set termguicolors")
-vim.cmd("set spell")
-vim.cmd("set spelllang=en_us,en_ca")
-vim.cmd("setlocal spelloptions=camel")
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.relativenumber = true
+vim.opt.number = true
+vim.opt.hlsearch = false
+vim.opt.title = true
+vim.opt.titlestring = "%f"
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.termguicolors = true
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
 vim.filetype.add({ extension = { templ = "templ" } })
 vim.g.mapleader = " "
+vim.cmd("setlocal spelloptions=camel")
 vim.api.nvim_create_autocmd("Filetype", {
-  pattern = "*",
-  callback = function()
-    vim.opt_local.formatoptions:remove({ "r", "o" })
-  end,
+    pattern = "*",
+    callback = function()
+        vim.opt_local.formatoptions:remove({ "r", "o" })
+    end,
 })
